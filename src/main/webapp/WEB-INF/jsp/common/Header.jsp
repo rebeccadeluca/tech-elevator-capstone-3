@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>National Park Geek</title>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <c:url value="/css/npgeek.css" var="cssHref" />
     <link rel="stylesheet" href="${cssHref}">
 </head>
@@ -24,3 +25,5 @@
             <li><a href="${survey}">Survey</a></li>
         </ul>
     </nav>
+    <br>
+    <br>
