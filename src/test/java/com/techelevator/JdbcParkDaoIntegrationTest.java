@@ -4,7 +4,9 @@ import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -25,8 +27,9 @@ public class JdbcParkDaoIntegrationTest {
 
 	private static SingleConnectionDataSource dataSource;
 	private JdbcParkDao dao;
-	private Park thisPark;
+	private Park thisPark = new Park();;
 	private JdbcTemplate jdbcTemplate;
+	private List<Park> allParks;
 	
 	@BeforeClass
 	public static void setupDataSource() {
@@ -46,44 +49,42 @@ public class JdbcParkDaoIntegrationTest {
 	public void setup() {
 		dao = new JdbcParkDao(dataSource);
 		jdbcTemplate = new JdbcTemplate(dataSource);
+		jdbcTemplate.update("DELETE FROM weather");
+		jdbcTemplate.update("DELETE FROM survey_result");
 		jdbcTemplate.update("DELETE FROM park");
-		jdbcTemplate.update("INSERT INTO park (""))
+		jdbcTemplate.update("INSERT INTO park(parkCode, parkName, state, acreage, elevationInFeet, milesOfTrail, numberOfCampsites, climate, yearFounded, annualVisitorCount, inspirationalQuote, inspirationalQuoteSource, parkDescription, entryFee, numberOfAnimalSpecies) VALUES ('CVNP', 'Cuyahoga Valley National Park', 'Ohio', 32832, 696, 125, 0, 'Woodland', 2000, 2189849, 'Of all the paths you take in life, make sure a few of them are dirt.', 'John Muir', 'Summary', 0, 390);");
+		allParks = new ArrayList<Park>();
+		allParks.add(thisPark);
+		thisPark.setImageName("cvnp");
+		thisPark.setName("Cuyahoga Valley National Park");
+		thisPark.setLocation("Ohio");
+		thisPark.setSummary("Summary");
+		thisPark.setCode("CVNP");
+		thisPark.setAcreage(32832);
+		thisPark.setElevation(696);
+		thisPark.setMilesOfTrail(125);
+		thisPark.setCampsites(0);
+		thisPark.setClimate("Woodland");
+		thisPark.setYearFounded(2000);
+		thisPark.setVisitors(2189849);
+		thisPark.setQuote("Of all the paths you take in life, make sure a few of them are dirt.");
+		thisPark.setQuoteSource("John Muir");
+		thisPark.setFee(0);
+		thisPark.setSpecies(390);
 	}
 
 	@After
 	public void rollback() throws SQLException {
 		dataSource.getConnection().rollback();
 	}
-	
-	@Test
-	public void gets_length_of_stay() throws ParseException {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		Date arrivalDate = sdf.parse("2017-11-20");
-		Date departDate = sdf.parse("2017-11-23");
-		BigDecimal length = dao.getLengthOfStay(arrivalDate, departDate);
-		
-		boolean areEqual = length.equals(new BigDecimal(3));
-		
-		Assert.assertTrue(areEqual);
-	}
-	
-	
-	/* This method provides access to the DataSource for subclasses so that 
-	 * they can instantiate a DAO for testing */
+
 	protected DataSource getDataSource() {
 		return dataSource;
 	}
 	
-	private Campsite makeACampsite(int siteId, int campgroundId, int siteNo, int maxOccup, boolean isAccessible, int maxRVLength, boolean hasUtilities) {
-		Campsite thisCampsite = new Campsite();
-		thisCampsite.setSiteId(siteId);
-		thisCampsite.setCampgroundId(campgroundId);
-		thisCampsite.setSiteNo(siteNo);
-		thisCampsite.setMaxOccup(maxOccup);
-		thisCampsite.setAccessible(isAccessible);
-		thisCampsite.setMaxRVLength(maxRVLength);
-		thisCampsite.setHasUtilities(hasUtilities);
-		return thisCampsite;
+	@Test
+	public void returns_all_parks() {
+		List<Park> daoParks = dao.getAllParks();
+		Assert.assertEquals(allParks, dao.getAllParks());
 	}
-	
 }

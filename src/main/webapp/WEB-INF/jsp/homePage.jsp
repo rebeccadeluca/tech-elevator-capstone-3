@@ -8,10 +8,15 @@
 <div class="row">
 	<div class="col-md-3">
 		<c:url value="/img/parks/${park.imageName}" var="parkImage"/>
-		<img class="img-responsive center-block" src="${parkImage}" alt="${park.name}"/> 
+		<c:url value="/parkDetail" var="detailPage">
+			<c:param name="parkCode" value="${park.code}"/>
+		</c:url>
+		<a href="${detailPage}">
+		<img class="img-responsive center-block" src="${parkImage}" alt="${park.name}"/></a>
 	</div>
 	<div class="col-md-9">
-		<h1><c:out value="${park.name}"/></h1><br>
+		<a href="${detailPage}">
+		<h1><c:out value="${park.name}"/></h1></a><br>
 		<h3><c:out value="${park.summary}"/></h3>
 	</div>
 </div>

@@ -37,6 +37,29 @@ public class JdbcParkDao implements ParkDao {
 		park.setName(results.getString("parkName"));
 		park.setLocation(results.getString("state"));
 		park.setSummary(results.getString("parkDescription"));
+		park.setCode(results.getString("parkCode"));
+		park.setAcreage(results.getInt("acreage"));
+		park.setElevation(results.getInt("elevationInFeet"));
+		park.setMilesOfTrail(results.getFloat("milesOfTrail"));
+		park.setCampsites(results.getInt("numberOfCampsites"));
+		park.setClimate(results.getString("climate"));
+		park.setYearFounded(results.getInt("yearFounded"));
+		park.setVisitors(results.getInt("annualVisitorCount"));
+		park.setQuote(results.getString("inspirationalQuote"));
+		park.setQuoteSource(results.getString("inspirationalQuoteSource"));
+		park.setFee(results.getInt("entryFee"));
+		park.setSpecies(results.getInt("numberOfAnimalSpecies"));
+		return park;
+	}
+
+	@Override
+	public Park getParkByCode(String code) {
+		Park park = new Park();
+		String sqlQuery = "SELECT * FROM park WHERE parkCode = ?";
+		SqlRowSet results = jdbcTemplate.queryForRowSet(sqlQuery, code);
+		while(results.next()) {
+			park = mapRowToPark(results);
+		} 
 		return park;
 	}
 

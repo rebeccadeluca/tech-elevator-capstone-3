@@ -1,5 +1,5 @@
 body {
-	background-color: green;
+	background-color: white;
 	font-family: sans-serif;
 }
 
@@ -9,11 +9,11 @@ header {
 
 header h1 {
 	font-size: 21pt;
-	color: #FFFFFF;
+	color: black;
 }
 
 header p {
-	color: #FFFFFF;
+	color: black;
 	/*font-size: 12pt;*/
 }
 
@@ -27,12 +27,12 @@ nav {
 }
 
 nav h2 {
-	color: #FFFFFF;
+	color: black;
 	padding-left: 60px;
 }
 
 nav p {
-	color: #FFFFFF;
+	color: black;
 	/*font-size: 12pt;*/
 	font-style: italic;
 	padding-left: 60px;
@@ -79,18 +79,18 @@ li a:hover {
 }
 
 section h1 {
-	color: #FFFFFF;
+	color: black;
 	font-size: 21pt;
 	/* padding-left: 120px; */
 }
 
 section h2 {
-	color: #FFFFFF;
+	color: black;
 	font-size: 18pt;
 }
 
 section p {
-	color: #FFFFFF;
+	color: black;
 	/*font-size: 14pt;*/
 	width: 80%;
 	margin: 25px;
