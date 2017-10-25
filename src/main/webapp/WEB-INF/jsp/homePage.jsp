@@ -12,12 +12,12 @@
 			<c:param name="parkCode" value="${park.code}"/>
 		</c:url>
 		<a href="${detailPage}">
-		<img class="img-responsive center-block" src="${parkImage}" alt="${park.name}"/></a>
+		<img style="height: 20vw; width:auto" class="img-responsive center-block" src="${parkImage}" alt="${park.name}"/></a>
 	</div>
 	<div class="col-md-9">
 		<a href="${detailPage}">
 		<h1><c:out value="${park.name}"/></h1></a><br>
-		<h3><c:out value="${park.summary}"/></h3>
+		<h4><c:out value="${park.summary}"/></h4>
 	</div>
 </div>
 <br>

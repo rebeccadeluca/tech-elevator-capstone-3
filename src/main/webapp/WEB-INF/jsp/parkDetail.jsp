@@ -22,13 +22,22 @@
 	<br>
 	<br>
 	
+	<c:url value="/parkDetail" var="submitUnit">
+		<c:param value="${park.code}" name="parkCode"/>
+	</c:url>
+	<form action="${submitUnit}" method="POST">
+		<input type="radio" name="unit" value="fahrenheit" checked> Fahrenheit 
+		<input type="radio" name="unit" value="celsius"> Celsius
+		<input type="submit" value="Change units">			
+	</form>
+	
 	<div class="row">
 		<div class="col-md-3">
 		<h4>Today</h4>
 		<c:set value="${forecast.get(0)}" var="today"/>
 			<c:url value="img/weather/${today.forecast}.png" var="weatherImage"/>
 			<img src="${weatherImage}"/>		
-			<p>High: ${today.high}   Low: ${today.low}</p>
+			<p>High: ${today.getHigh(sessionScope.unit)} Low: ${today.getLow(sessionScope.unit)}</p>
 			<ul>
 			<c:forEach var="recommendation" items="${today.recommendation}">
 				<li>${recommendation}</li>
@@ -43,7 +52,7 @@
 			<c:url value="img/weather/${day.forecast}.png" var="weatherImage"/>
 			<img src="${weatherImage}"/>
 			<br>
-			High: ${day.high}   Low: ${day.low}
+			High: ${day.getHigh(sessionScope.unit)}   Low: ${day.getLow(sessionScope.unit)}
 		</div>	
 		</c:forEach>
 		

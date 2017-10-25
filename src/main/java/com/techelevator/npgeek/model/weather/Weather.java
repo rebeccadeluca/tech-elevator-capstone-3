@@ -3,6 +3,8 @@ package com.techelevator.npgeek.model.weather;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.techelevator.npgeek.model.park.Park;
+
 public class Weather {
 
 	private String code;
@@ -23,14 +25,22 @@ public class Weather {
 	public void setDay(int day) {
 		this.day = day;
 	}
-	public int getLow() {
-		return low;
+	public int getLow(String unit) {
+		if(unit.equals("fahrenheit")) {
+			return low;
+		} else {
+			return (int)((5.0/9.0)*(low - 32));
+		}
 	}
 	public void setLow(int low) {
 		this.low = low;
 	}
-	public int getHigh() {
-		return high;
+	public int getHigh(String unit) {
+		if(unit.equals("fahrenheit")) {
+			return high;
+		} else {
+			return (int)((5.0/9.0)*(high - 32));
+		}
 	}
 	public void setHigh(int high) {
 		this.high = high;
@@ -67,4 +77,19 @@ public class Weather {
 		}
 		return recommendations;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Weather) {
+			Weather weather = (Weather) obj;
+			if (weather.getDay() == day && weather.getForecast().equals(forecast) && weather.getHigh("fahrenheit") == high && weather.getLow("fahrenheit") == low && weather.getCode().equals(code)) {
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return false;
+		}
+	}
+	
 }
