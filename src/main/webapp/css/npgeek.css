@@ -252,7 +252,32 @@ section#calculatorResult h2 {
 #weightOutput {
 	background-color: white;
 }
+
 .copyright {
 	color: white;
 	text-align: center;
+}
+
+#week-forecast{
+	display: inline-block;
+	vertical-align: middle;
+	float: none;
+}
+
+#week-forecast img {
+	width: 100%;
+	height: auto;
+	vertical-align: middle;
+}
+
+#survey-form label {
+	width:175px;
+}
+
+#survey-form #submit-button {
+	text-align: center;
+}
+
+#survey-form #radio-buttons input:not(:first-child) {
+	margin-left: 20px;
 }

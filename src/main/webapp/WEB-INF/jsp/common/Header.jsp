@@ -20,7 +20,7 @@
     </header>
     <nav>
         <ul>
-        		<c:url value="Survey" var="survey"/>
+        		<c:url value="parkSurvey" var="survey"/>
             <li><a href="${home}">Home</a></li>
             <li><a href="${survey}">Survey</a></li>
         </ul>

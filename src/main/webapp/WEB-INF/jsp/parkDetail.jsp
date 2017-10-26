@@ -34,10 +34,19 @@
 	<div class="row">
 		<div class="col-md-3">
 		<h4>Today</h4>
+		<c:choose>
+			<c:when test='${sessionScope.unit.equals("fahrenheit")}'>
+				<c:set value=" F" var="temp"/>
+			</c:when>
+			<c:when test='${sessionScope.unit.equals("celsius")}'>
+				<c:set value=" C" var="temp"/>
+			</c:when>
+		</c:choose>
 		<c:set value="${forecast.get(0)}" var="today"/>
 			<c:url value="img/weather/${today.forecast}.png" var="weatherImage"/>
 			<img src="${weatherImage}"/>		
-			<p>High: ${today.getHigh(sessionScope.unit)} Low: ${today.getLow(sessionScope.unit)}</p>
+			
+			<p>High: ${today.getHigh(sessionScope.unit) } ${temp} Low: ${today.getLow(sessionScope.unit)}  ${temp}</p>
 			<ul>
 			<c:forEach var="recommendation" items="${today.recommendation}">
 				<li>${recommendation}</li>
@@ -48,11 +57,12 @@
 		
 		
 		<c:forEach var="day" items="${forecast}" begin="1">
-		<div class="col-md-2">
+		<div id="week-forecast" class="col-md-2">
 			<c:url value="img/weather/${day.forecast}.png" var="weatherImage"/>
 			<img src="${weatherImage}"/>
 			<br>
-			High: ${day.getHigh(sessionScope.unit)}   Low: ${day.getLow(sessionScope.unit)}
+			High: ${day.getHigh(sessionScope.unit) } ${temp} <br>
+			Low: ${day.getLow(sessionScope.unit)}  ${temp}
 		</div>	
 		</c:forEach>
 		

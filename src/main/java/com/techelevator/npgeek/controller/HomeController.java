@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.techelevator.npgeek.model.park.ParkDao;
+import com.techelevator.npgeek.model.survey.Survey;
+import com.techelevator.npgeek.model.survey.SurveyDao;
 import com.techelevator.npgeek.model.weather.WeatherDao;
 
 @Controller
@@ -20,6 +22,8 @@ public class HomeController {
 	private ParkDao parkDao;
 	@Autowired
 	private WeatherDao weatherDao;
+	@Autowired
+	private SurveyDao surveyDao;
 
 	@RequestMapping("/")
 	public String displayHomePage(HttpServletRequest request) {
@@ -41,5 +45,31 @@ public class HomeController {
 	public String changeUnits(@RequestParam String unit, @RequestParam String parkCode, ModelMap map) {
 		map.put("unit", unit);
 		return "redirect:/parkDetail?parkCode=" + parkCode;
+	}
+	
+	@RequestMapping(path="/parkSurvey", method=RequestMethod.GET)
+	public String getSurveyForm(HttpServletRequest request) {
+		request.setAttribute("parks", parkDao.getAllParks());
+		String[] states = {"California", "Alabama", "Arkansas", "Arizona", "Alaska", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"};
+		request.setAttribute("states", states);
+		return "parkSurveyForm";
+	}
+	
+	@RequestMapping(path="/parkSurvey", method=RequestMethod.POST)
+	public String getSurveyResults(Survey survey) {
+		surveyDao.addSurvey(survey);
+		return "redirect:/parkSurveyResults";
+	}
+	
+	@RequestMapping(path="/parkSurveyResults", method=RequestMethod.GET)
+	public String showSurveyResults(HttpServletRequest request) {
+		request.setAttribute("surveyResults", surveyDao.getSurveyResults());
+		return "parkSurveyResults";
+	}
+	
+	@RequestMapping(path="/parkSurveyResults", method=RequestMethod.POST)
+	public String showActivityLevel(@RequestParam String activityLevel, HttpServletRequest request) {
+		
+		return "";
 	}
 }
