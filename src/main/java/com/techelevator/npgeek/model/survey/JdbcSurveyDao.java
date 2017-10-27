@@ -34,6 +34,19 @@ public class JdbcSurveyDao implements SurveyDao{
 		}
 		return surveyResults;
 	}
+	
+	@Override
+	public SurveyResults getSurveyResults(Survey survey) {
+		SurveyResults surveyResults = new SurveyResults();
+		String sqlQuery = "SELECT * FROM survey_result WHERE state = ? AND activityLevel = ?";
+		
+		SqlRowSet rows = jdbcTemplate.queryForRowSet(sqlQuery, survey.getState(), survey.getActivityLevel());
+		while(rows.next()) {
+			Survey newSurvey = mapRowToSurvey(rows);
+			surveyResults.addSurvey(newSurvey);
+		}
+		return surveyResults;
+	}
 
 	public List<Survey> getAllSurveys() {
 		List<Survey> allSurveys = new ArrayList<Survey>();

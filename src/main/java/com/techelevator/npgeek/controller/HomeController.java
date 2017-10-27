@@ -16,7 +16,7 @@ import com.techelevator.npgeek.model.survey.SurveyDao;
 import com.techelevator.npgeek.model.weather.WeatherDao;
 
 @Controller
-@SessionAttributes("unit")
+@SessionAttributes({"unit", "userSurvey", "surveyDisplayMode"})
 public class HomeController {
 	@Autowired
 	private ParkDao parkDao;
@@ -48,28 +48,38 @@ public class HomeController {
 	}
 	
 	@RequestMapping(path="/parkSurvey", method=RequestMethod.GET)
-	public String getSurveyForm(HttpServletRequest request) {
-		request.setAttribute("parks", parkDao.getAllParks());
-		String[] states = {"California", "Alabama", "Arkansas", "Arizona", "Alaska", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"};
-		request.setAttribute("states", states);
-		return "parkSurveyForm";
+	public String getSurveyForm(ModelMap map, HttpServletRequest request) {
+		if (map.containsKey("userSurvey")) {
+			return "redirect:/partSurveyResults";
+		} else {
+			request.setAttribute("parks", parkDao.getAllParks());
+			String[] states = {"California", "Alabama", "Arkansas", "Arizona", "Alaska", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"};
+			request.setAttribute("states", states);
+			return "parkSurveyForm";
+		}
 	}
 	
 	@RequestMapping(path="/parkSurvey", method=RequestMethod.POST)
-	public String getSurveyResults(Survey survey) {
+	public String getSurveyResults(ModelMap map, Survey survey) {
 		surveyDao.addSurvey(survey);
+		map.addAttribute("userSurvey", survey);
 		return "redirect:/parkSurveyResults";
 	}
 	
 	@RequestMapping(path="/parkSurveyResults", method=RequestMethod.GET)
-	public String showSurveyResults(HttpServletRequest request) {
-		request.setAttribute("surveyResults", surveyDao.getSurveyResults());
+	public String showSurveyResults(ModelMap map, HttpServletRequest request) {
+		String displayMode = (String) map.getOrDefault("surveyDisplayMode", "everyone");
+		if (displayMode.equals("everyone")) {
+			request.setAttribute("surveyResults", surveyDao.getSurveyResults());
+		} else if (displayMode.equals("demographics")) {
+			request.setAttribute("surveyResults", surveyDao.getSurveyResults((Survey)map.get("userSurvey")));
+		}
 		return "parkSurveyResults";
 	}
 	
 	@RequestMapping(path="/parkSurveyResults", method=RequestMethod.POST)
-	public String showActivityLevel(@RequestParam String activityLevel, HttpServletRequest request) {
-		
+	public String showActivityLevel(@RequestParam String displayMode, ModelMap map) {
+			map.addAttribute("surveyDisplayMode", displayMode);
 		return "";
 	}
 }
