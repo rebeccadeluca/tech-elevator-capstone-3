@@ -4,7 +4,15 @@
 <c:import url="/WEB-INF/jsp/common/Header.jsp"/>
 
 <section>
-	<h1> Survey Results</h1>
+	<c:choose>
+		<c:when test="${sessionScope.surveyDisplayMode.equals('everyone')}">
+			<h1 id = "everyone"> Survey Results for Everyone</h1>
+		</c:when>
+		<c:when test="${sessionScope.surveyDisplayMode.equals('demographics')}">
+			<h1 id="demographics"> Survey Results for Your Demographic</h1>
+		</c:when>
+	</c:choose>
+	<h1> Survey Results </h1>
 	<c:url value="parkSurveyResults" var="submitForm"/>
 	<form action="${submitForm}" method="POST">
 		<input type="radio" name="displayMode" value="demographics"> people like me
