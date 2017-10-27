@@ -7,8 +7,8 @@
 	<h1> Survey Results</h1>
 	<c:url value="parkSurveyResults" var="submitForm"/>
 	<form action="${submitForm}" method="POST">
-		<input type="radio" name="activityLevel" value="myActivityLevel"> people like me
-		<input type="radio" name="activityLevel" value="all"> everyone
+		<input type="radio" name="activityLevel" value="demographics"> people like me
+		<input type="radio" name="activityLevel" value="everyone"> everyone
 	</form>
 	<br>
 	<c:forEach var="parkCode" items="${surveyResults.getAllParkCodes()}">

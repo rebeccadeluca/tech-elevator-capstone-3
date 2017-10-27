@@ -16,7 +16,7 @@ import com.techelevator.npgeek.model.survey.SurveyDao;
 import com.techelevator.npgeek.model.weather.WeatherDao;
 
 @Controller
-@SessionAttributes({"unit", "userSurvey"})
+@SessionAttributes({"unit", "userSurvey", "surveyDisplayMode"})
 public class HomeController {
 	@Autowired
 	private ParkDao parkDao;
@@ -63,8 +63,13 @@ public class HomeController {
 	}
 	
 	@RequestMapping(path="/parkSurveyResults", method=RequestMethod.GET)
-	public String showSurveyResults(HttpServletRequest request) {
-		request.setAttribute("surveyResults", surveyDao.getSurveyResults());
+	public String showSurveyResults(ModelMap map, HttpServletRequest request) {
+		String displayMode = (String) map.getOrDefault("surveyDisplayMode", "everyone");
+		if (displayMode.equals("everyone")) {
+			request.setAttribute("surveyResults", surveyDao.getSurveyResults());
+		} else if (displayMode.equals("demographics")) {
+			request.setAttribute("surveyResults", surveyDao.getSurveyResults((Survey)map.get("userSurvey")));
+		}
 		return "parkSurveyResults";
 	}
 	
