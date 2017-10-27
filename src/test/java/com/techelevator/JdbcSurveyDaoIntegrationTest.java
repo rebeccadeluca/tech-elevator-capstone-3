@@ -55,6 +55,20 @@ public class JdbcSurveyDaoIntegrationTest {
 		survey.setActivityLevel("activity");
 		allSurveys.add(survey);
 		dao.addSurvey(survey);
+		Survey survey2 = new Survey();
+		survey2.setParkCode("CVNP");
+		survey2.setState("Ohio");
+		survey2.setEmail("email");
+		survey2.setActivityLevel("activity");
+		allSurveys.add(survey2);
+		dao.addSurvey(survey2);
+		Survey survey3 = new Survey();
+		survey3.setParkCode("CVNP");
+		survey3.setState("Ohio");
+		survey3.setEmail("email");
+		survey3.setActivityLevel("activity");
+		allSurveys.add(survey3);
+		dao.addSurvey(survey3);
 	}
 
 	@After
@@ -79,17 +93,19 @@ public class JdbcSurveyDaoIntegrationTest {
 		newSurvey.setActivityLevel("activity2");
 		newSurvey.setEmail("email2");
 		dao.addSurvey(newSurvey);
-		List<Survey> list = new ArrayList<Survey>();
-		list.add(survey);
-		list.add(newSurvey);
-		Assert.assertEquals(list, dao.getAllSurveys());
+		allSurveys.add(newSurvey);
+		Assert.assertEquals(allSurveys, dao.getAllSurveys());
 	}
 	
 	@Test
-	public void survey_results_should_be_returned() {
-		SurveyResults expectedResults = new SurveyResults();
-		expectedResults.addSurvey(survey);
-		boolean rightNumberOfSurveys = expectedResults.getCountForPark("CVNP") == 1;
-		Assert.assertTrue("There should be only CVNP", rightNumberOfSurveys);
+	public void get_survey_results_should_be_returned() {
+		SurveyResults results = dao.getSurveyResults();
+		Assert.assertEquals("The count should be 3", 3, results.getCountForParkCode("CVNP").intValue());
+	}
+	
+	@Test
+	public void get_survey_results_should_return_only_similar_surveys() {
+		SurveyResults results = dao.getSurveyResults(survey);
+		Assert.assertEquals("The count should be 1", 1, results.getCountForParkCode("CVNP").intValue());
 	}
 }

@@ -74,8 +74,8 @@ public class HomeController {
 	}
 	
 	@RequestMapping(path="/parkSurveyResults", method=RequestMethod.POST)
-	public String showActivityLevel(@RequestParam String activityLevel, HttpServletRequest request) {
-		
+	public String showActivityLevel(@RequestParam String displayMode, ModelMap map) {
+			map.addAttribute("surveyDisplayMode", displayMode);
 		return "";
 	}
 }
