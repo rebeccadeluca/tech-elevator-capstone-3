@@ -12,7 +12,6 @@
 			<h1 id="demographics"> Survey Results for People Similar To You</h1>
 		</c:when>
 	</c:choose>
-	<h1> Survey Results </h1>
 	<c:url value="parkSurveyResults" var="submitForm"/>
 	<form action="${submitForm}" method="POST">
 		<input type="radio" name="displayMode" value="demographics"> people like me
@@ -20,11 +19,22 @@
 		<input type="submit" value="submit">
 	</form>
 	<br>
+	
+	<table>
+		<tr>
+		<td></td>
+		<td><h3>Park</h3></td>
+		<td><h3>Votes</h3></td>
+		</tr>
 	<c:forEach var="parkCode" items="${surveyResults.getAllParkCodes()}">
+	<tr>
+	<td>
 		<c:url value="img/parks/${parkCode.toLowerCase()}.jpg" var="imageURL"/>
-		<img src="${imageURL}">
-		${surveyResults.getName(parkCode)}
-		${surveyResults.getCountForParkCode(parkCode).toString()}
+		<img src="${imageURL}"></td>
+		<td>${surveyResults.getName(parkCode)}</td>
+		<td>${surveyResults.getCountForParkCode(parkCode).toString()}</td>
+		</tr>
 		<br>
 	</c:forEach>
+	</table>
 </section>

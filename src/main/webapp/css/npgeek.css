@@ -159,10 +159,10 @@ input[type=text], input[type=datetime], textarea {
 	width: 300px;
 }
 
-th, td {
+/* th, td {
 	color: white;
 }
-
+ */
 table tr:first-child {
 	padding-bottom: 10px;
 	font-size: 1.1em;
@@ -170,7 +170,7 @@ table tr:first-child {
 
 table td {
 	min-width: 75px;
-	padding: 5px 5px;
+	padding: 20px 20px;
 }
 
 section.centeredPanel {
