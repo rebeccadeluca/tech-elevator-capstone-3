@@ -18,5 +18,15 @@ public class HomePage {
 		return new ParkSurveyFormPage(webDriver);
 	}
 	
-	public ParkDetailPage click
+	public ParkDetailPage clickImageLink() {
+		WebElement imageLink = webDriver.findElement(By.id("park-img"));
+		imageLink.click();
+		return new ParkDetailPage(webDriver);
+	}
+	
+	public ParkDetailPage clickParkNameLink(String parkName) {
+		WebElement nameLink = webDriver.findElement(By.linkText(parkName));
+		nameLink.click();
+		return new ParkDetailPage(webDriver);
+	}
 }
