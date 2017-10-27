@@ -6,4 +6,5 @@ public interface SurveyDao {
 
 	public void addSurvey(Survey survey);
 	public SurveyResults getSurveyResults();
+	SurveyResults getSurveyResults(Survey survey);
 }

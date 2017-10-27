@@ -16,7 +16,7 @@ import com.techelevator.npgeek.model.survey.SurveyDao;
 import com.techelevator.npgeek.model.weather.WeatherDao;
 
 @Controller
-@SessionAttributes("unit")
+@SessionAttributes({"unit", "userSurvey"})
 public class HomeController {
 	@Autowired
 	private ParkDao parkDao;
@@ -56,8 +56,9 @@ public class HomeController {
 	}
 	
 	@RequestMapping(path="/parkSurvey", method=RequestMethod.POST)
-	public String getSurveyResults(Survey survey) {
+	public String getSurveyResults(ModelMap map, Survey survey) {
 		surveyDao.addSurvey(survey);
+		map.addAttribute("userSurvey", survey);
 		return "redirect:/parkSurveyResults";
 	}
 	
