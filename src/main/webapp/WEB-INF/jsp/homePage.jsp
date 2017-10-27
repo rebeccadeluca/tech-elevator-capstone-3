@@ -3,7 +3,7 @@
 
 <c:import url="/WEB-INF/jsp/common/Header.jsp" />
 
-<section>
+<section style="padding: 60px;">
 <c:forEach var="park" items="${parks}">
 <div class="row">
 	<div class="col-md-3">
@@ -16,8 +16,8 @@
 	</div>
 	<div class="col-md-9">
 		<a href="${detailPage}">
-		<h1><c:out value="${park.name}"/></h1></a><br>
-		<h4><c:out value="${park.summary}"/></h4>
+		<h1 class="francois-font"><c:out value="${park.name}"/></h1></a><br>
+		<p><c:out value="${park.summary}"/></p>
 	</div>
 </div>
 <br>

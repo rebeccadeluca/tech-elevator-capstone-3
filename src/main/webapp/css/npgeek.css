@@ -1,6 +1,9 @@
+@import "compass/css3";
+
 body {
 	background-color: white;
-	font-family: sans-serif;
+    font-family: 'Open Sans';
+    font-size: 22px;
 }
 
 header {
@@ -24,22 +27,14 @@ header img {
 nav {
 	margin-top: 50px;
 	margin-bottom: 50px;
-}
-
-nav h2 {
-	color: black;
-	padding-left: 60px;
-}
-
-nav p {
-	color: black;
-	/*font-size: 12pt;*/
-	font-style: italic;
-	padding-left: 60px;
+	font-family: 'Francois One';
+	background-color: #DBD9C7;
+	height:40px;
+	width: 100%;
 }
 
 ul {
-	padding-left: 80px;
+	padding-left: 100px;
 }
 
 li {
@@ -47,12 +42,11 @@ li {
 }
 
 li a {
-	color: #0D118B;
+	color: #636158;
 	text-decoration: none;
-	/*font-size: 20pt;*/
+	font-size: 16pt;
 	list-style: none;
 	text-align: center;
-	vertical-align: middle;
 }
 
 nav ul {
@@ -61,13 +55,12 @@ nav ul {
 
 nav ul li {
 	float: left;
-	margin-right: 20px;
-	background-color: white;
+	margin-right: 25px;
 	border-radius: 8px;
 	list-style: none;
-	text-align: center;
+	vertical-align: middle;
 	width: 200px;
-	padding-top: 5px;
+	padding-top: 3px;
 }
 
 nav:after {
@@ -81,7 +74,6 @@ li a:hover {
 section h1 {
 	color: black;
 	font-size: 21pt;
-	/* padding-left: 120px; */
 }
 
 section h2 {
@@ -91,7 +83,7 @@ section h2 {
 
 section p {
 	color: black;
-	/*font-size: 14pt;*/
+	font-size: 14pt;
 	width: 80%;
 	margin: 25px;
 	text-align: left;
@@ -210,49 +202,6 @@ section.centeredPanel p {
 	display: block;
 }
 
-/* Calculator Result */
-section#calculatorResult img {
-	float: left;
-}
-
-section#calculatorResult h2 {
-	float: left;
-	width: 50%;
-	text-align: left;
-}
-
-/* Space Forum Posts */
-.posts {
-	padding: 10px;
-}
-
-.posts .post {
-	padding-left: 10px;
-	padding-top: 10px;
-}
-
-.posts .post * {
-	color: #000;
-	margin: 0;
-}
-
-.posts .post h4 {
-	padding-top: 5px;
-}
-
-.posts .post p.message {
-	margin-top: 10px;
-	padding-bottom: 10px;
-}
-
-.posts .post:nth-child(2n) {
-	background-color: lightgray;
-}
-
-#weightOutput {
-	background-color: white;
-}
-
 .copyright {
 	color: white;
 	text-align: center;
@@ -271,7 +220,7 @@ section#calculatorResult h2 {
 }
 
 #survey-form label {
-	width:175px;
+	width:280px;
 }
 
 #survey-form #submit-button {
@@ -280,4 +229,36 @@ section#calculatorResult h2 {
 
 #survey-form #radio-buttons input:not(:first-child) {
 	margin-left: 20px;
+}
+
+.francois-font{
+	font-family: 'Francois One';
+}
+
+.extra-bold {
+	font-weight: 600;
+}
+
+.flex-container {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  
+  -webkit-flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.flex-item {
+  padding: 5px;
+  width: 400px;
+  height: 150px;
+  margin-top: 10px;
+  color: white;
+  text-align: center;
 }

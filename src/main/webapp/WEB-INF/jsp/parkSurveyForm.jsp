@@ -3,11 +3,11 @@
 
 <c:import url="/WEB-INF/jsp/common/Header.jsp"/>
 
-<section>
+<section style="padding-left: 30px">
 	<c:url var="submitSurvey" value="/parkSurvey"/>
 	<form id="survey-form" action=${submitSurvey} method="POST"}>
 		<label for="">Favorite National Park</label>
-		<select name="parkCode">
+		<select id="park" name="parkCode">
 			<c:forEach var="park" items="${parks}">
 				<option value="${park.code}"> ${park.name} </option>
 			</c:forEach>
@@ -17,7 +17,7 @@
 		<input type="text" name="email">
 		<br><br>
 		<label for="">State of Residence</label>
-		<select name="state">
+		<select id="state" name="state">
 			<c:forEach var="state" items="${states}">
 				<option value="${state}"> ${state} </option>
 			</c:forEach>
