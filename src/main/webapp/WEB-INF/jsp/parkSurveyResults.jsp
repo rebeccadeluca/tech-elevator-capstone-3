@@ -9,7 +9,7 @@
 			<h1 id = "everyone"> Survey Results for Everyone</h1>
 		</c:when>
 		<c:when test="${sessionScope.surveyDisplayMode.equals('demographics')}">
-			<h1 id="demographics"> Survey Results for Your Demographic</h1>
+			<h1 id="demographics"> Survey Results for People Similar To You</h1>
 		</c:when>
 	</c:choose>
 	<h1> Survey Results </h1>
@@ -17,6 +17,7 @@
 	<form action="${submitForm}" method="POST">
 		<input type="radio" name="displayMode" value="demographics"> people like me
 		<input type="radio" name="displayMode" value="everyone"> everyone
+		<input type="submit" value="submit">
 	</form>
 	<br>
 	<c:forEach var="parkCode" items="${surveyResults.getAllParkCodes()}">
