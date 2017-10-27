@@ -12,3 +12,10 @@ Scenario: View survey results similar to yours
 	When I change the displayMode to similar to you
 	Then I should see the survey results page
 	and the display mode should be set to demographics
+	
+Scenario: Fill out survey and click the survey link
+	Given I am on the homepage
+	And I fill out the survey
+	And I click to submit the survey
+	When I click on the survey link
+	Then I should see the survey results page
