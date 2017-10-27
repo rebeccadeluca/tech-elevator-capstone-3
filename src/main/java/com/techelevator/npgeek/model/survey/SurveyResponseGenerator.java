@@ -6,7 +6,7 @@ public class SurveyResponseGenerator {
 
 	private static JdbcSurveyDao dao;
 	
-	private static String[] parkCodes = new String[] {"CVNP", "ENP", "GCNP", "GNP", "GSMCP", "GTNP", "MRNP", "RMNP", "YNP", "YNP2"};
+	private static String[] parkCodes = new String[] {"CVNP", "ENP", "GCNP", "GNP", "GSMNP", "GTNP", "MRNP", "RMNP", "YNP", "YNP2"};
 	private static String[] activityLevel = new String[] {"sedentary", "inactive", "active", "extremely active"};
 	private static String[] states = new String[] {"California", "Alabama", "Arkansas", "Arizona", "Alaska", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"};
 	
