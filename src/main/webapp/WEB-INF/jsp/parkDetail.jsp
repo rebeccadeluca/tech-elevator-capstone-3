@@ -3,7 +3,7 @@
 
 <c:import url="/WEB-INF/jsp/common/Header.jsp"/>
 
-<section style="text-align: center;  width: auto">
+<section id="park-detail" style="text-align: center;  width: auto">
 	<c:url value="img/parks/${park.imageName}" var="imageName"/>
 	<img style="width: 50vw; height:auto;" src="${imageName}"/>
 	<h1 style="margin: 25px;" class="francois-font">${park.name}</h1>

@@ -3,6 +3,7 @@ package com.techelevator.npgeek.pageobject;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -24,6 +25,15 @@ public class ParkDetailPage {
 			}
 		}
 		return this;
+	}
+	
+	public boolean isShown() {
+		try {
+			WebElement form = webDriver.findElement(By.id("survey-form"));
+			return form != null;
+		} catch (NoSuchElementException e) {
+			return false;
+		}
 	}
 
 }

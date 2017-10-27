@@ -17,7 +17,7 @@
     		<c:url value="/" var="home" />
     		<c:url value="/img/newlogo.png" var="logoSrc" />
         <a href="${home}">
-        		<img style="height: 25%" src="${logoSrc}" alt="National Park Geek" />
+        		<img id="logo" style="height: 25%" src="${logoSrc}" alt="National Park Geek" />
         </a>
     </header>
     <nav>
