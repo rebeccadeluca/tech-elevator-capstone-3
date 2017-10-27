@@ -50,7 +50,7 @@ public class HomeController {
 	@RequestMapping(path="/parkSurvey", method=RequestMethod.GET)
 	public String getSurveyForm(ModelMap map, HttpServletRequest request) {
 		if (map.containsKey("userSurvey")) {
-			return "partSurveyResults";
+			return "redirect:/partSurveyResults";
 		} else {
 			request.setAttribute("parks", parkDao.getAllParks());
 			String[] states = {"California", "Alabama", "Arkansas", "Arizona", "Alaska", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"};
