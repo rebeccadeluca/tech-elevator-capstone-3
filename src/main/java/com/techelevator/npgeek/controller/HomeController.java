@@ -72,14 +72,21 @@ public class HomeController {
 		if (displayMode.equals("everyone")) {
 			request.setAttribute("surveyResults", surveyDao.getSurveyResults());
 		} else if (displayMode.equals("demographics")) {
-			request.setAttribute("surveyResults", surveyDao.getSurveyResults((Survey)map.get("userSurvey")));
+			if (map.containsKey("userSurvey")){
+				request.setAttribute("surveyResults", surveyDao.getSurveyResults((Survey)map.get("userSurvey")));
+			} else {
+				return "redirect:/parkSurvey";
+			}
 		}
 		return "parkSurveyResults";
 	}
 	
 	@RequestMapping(path="/parkSurveyResults", method=RequestMethod.POST)
 	public String showActivityLevel(@RequestParam String displayMode, ModelMap map) {
-			map.addAttribute("surveyDisplayMode", displayMode);
+		if (!map.containsKey("userSurvey") && displayMode.equals("demographics")) {
+			return "redirect:/parkSurvey";
+		}
+		map.addAttribute("surveyDisplayMode", displayMode);
 		return "redirect:/parkSurveyResults";
 	}
 }
