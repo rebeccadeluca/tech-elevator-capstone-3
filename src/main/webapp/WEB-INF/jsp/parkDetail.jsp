@@ -44,8 +44,8 @@
 		<c:param value="${park.code}" name="parkCode"/>
 	</c:url>
 	<form action="${submitUnit}" method="POST">
-		<input type="radio" name="unit" value="fahrenheit" checked> Fahrenheit 
-		<input type="radio" name="unit" value="celsius"> Celsius
+		<input id="temperature" type="radio" name="unit" value="fahrenheit" checked> Fahrenheit 
+		<input id="temperature" type="radio" name="unit" value="celsius"> Celsius
 		<input id="submit" type="submit" value="Change units">			
 	</form>
 	</div>
@@ -65,7 +65,7 @@
 			<c:url value="img/weather/${today.forecast}.png" var="weatherImage"/>
 			<img src="${weatherImage}"/>		
 			
-			<p id="${temp}"><span class="extra-bold">High:</span> ${today.getHigh(sessionScope.unit) } ${temp} <span class="extra-bold">Low:</span> ${today.getLow(sessionScope.unit)}  ${temp}</p>
+			<p id="temp"><span class="extra-bold">High:</span> ${today.getHigh(sessionScope.unit) } ${temp} <span class="extra-bold">Low:</span> ${today.getLow(sessionScope.unit)}  ${temp}</p>
 			<ul>
 			<c:forEach var="recommendation" items="${today.recommendation}">
 				<li style="text-align: left;">${recommendation}</li>

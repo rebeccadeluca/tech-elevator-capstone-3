@@ -3,9 +3,12 @@ package com.techelevator.npgeek.pageobject;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 
 public class ParkDetailPage {
 
@@ -16,20 +19,39 @@ public class ParkDetailPage {
 	}
 	
 	public ParkDetailPage selectUnits(String tempUnit) {
-		List<WebElement> userChoice = webDriver.findElements(By.name("unit"));
-		for(int i = 0; i < 2; i++) {
-			String unit = userChoice.get(i).getAttribute("value");
-			if(unit.equalsIgnoreCase(tempUnit)) {
-				userChoice.get(i).click();
-				break;
-			}
-		}
+//		List<WebElement> units = webDriver.findElements(By.name("unit"));
+//		for(int i = 0; i < 2; i++) {
+//			String unit = units.get(i).getAttribute("value");
+//			if(unit.equals(tempUnit)) {
+//				units.get(i).click();
+//				break;
+//			}
+//		}
+		String css = "input[value='" + tempUnit + "']";
+		WebElement unit = webDriver.findElement(By.cssSelector(css));
+		WebElement button = webDriver.findElement(By.id("submit"));
+//		unit.click();
+		
+		JavascriptExecutor jse = (JavascriptExecutor)webDriver;
+		jse.executeScript("arguments[0].checked = true; arguments[1].click()", unit, button);
+		
+//		WebElement button = webDriver.findElement(By.id("submit"));
+//		button.click();
 		return this;
+
+//		for(int i = 0; i < 2; i++) {
+//			String unit = userChoice.get(i).getAttribute("value");
+//			if(unit.equalsIgnoreCase(tempUnit)) {
+//				userChoice.get(i).click();
+//				break;
+//			}
+//		}
+//		return this;
 	}
 	
 	public boolean isShown() {
 		try {
-			WebElement form = webDriver.findElement(By.id("survey-form"));
+			WebElement form = webDriver.findElement(By.id("park-detail"));
 			return form != null;
 		} catch (NoSuchElementException e) {
 			return false;
@@ -43,7 +65,7 @@ public class ParkDetailPage {
 	}
 
 	public boolean isCelsius() {
-		WebElement unitsShown = webDriver.findElement(By.id("C"));
+		WebElement unitsShown = webDriver.findElement(By.id("temp"));
 		if(unitsShown.getText().contains("C")) {
 			return true;
 		} else {
@@ -52,7 +74,7 @@ public class ParkDetailPage {
 	}
 	
 	public boolean isFahrenheit() {
-		WebElement unitsShown = webDriver.findElement(By.id("F"));
+		WebElement unitsShown = webDriver.findElement(By.id("temp"));
 		if(unitsShown.getText().contains("F")) {
 			return true;
 		} else {

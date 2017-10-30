@@ -34,7 +34,7 @@ public class ParkSurveyFormPage {
 		return this;
 	}
 	
-	public ParkSurveyResultsPage submitForm(String activityLevel) {
+	public ParkSurveyFormPage selectActivityLevel(String activityLevel) {
 		List<WebElement> userActivityLevel = webDriver.findElements(By.name("activityLevel"));
 		for(int i = 0; i < 4; i++) {
 			String level = userActivityLevel.get(i).getAttribute("value");
@@ -43,6 +43,12 @@ public class ParkSurveyFormPage {
 				break;
 			}
 		}
+		return this;
+	}
+	
+	public ParkSurveyResultsPage submitForm() {
+		WebElement button = webDriver.findElement(By.id("submit-button"));
+		button.click();
 		return new ParkSurveyResultsPage(webDriver);
 	}
 	
@@ -53,6 +59,14 @@ public class ParkSurveyFormPage {
 		} catch (NoSuchElementException e) {
 			return false;
 		}
+	}
+	
+	public ParkSurveyResultsPage fillOutSurvey() {
+		selectPark("CVNP");
+		enterEmailAddress("email@email.com");
+		selectState("Ohio");
+		selectActivityLevel("extremely active");
+		return submitForm();
 	}
 	 
 }

@@ -3,7 +3,7 @@
 
 <c:import url="/WEB-INF/jsp/common/Header.jsp"/>
 
-<section>
+<section id="survey-results">
 	<c:choose>
 		<c:when test="${sessionScope.surveyDisplayMode.equals('everyone')}">
 			<h1 id = "everyone"> Survey Results for Everyone</h1>
@@ -16,7 +16,7 @@
 	<form action="${submitForm}" method="POST">
 		<input type="radio" name="displayMode" value="demographics"> people like me
 		<input type="radio" name="displayMode" value="everyone"> everyone
-		<input type="submit" value="submit">
+		<input type="submit" name="submit" value="submit">
 	</form>
 	<br>
 	
