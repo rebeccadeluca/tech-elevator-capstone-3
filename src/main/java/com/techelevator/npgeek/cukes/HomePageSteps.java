@@ -23,6 +23,8 @@ public class HomePageSteps {
 	public HomePageSteps(WebDriver webDriver) {
 		this.webDriver = webDriver;
 		this.homePage = homePage;
+		this.surveyFormPage = surveyFormPage;
+		this.detailPage = detailPage;		
 	}
 	
 	@Given("^I am on the home page$")
@@ -37,7 +39,7 @@ public class HomePageSteps {
 	}
 	
 	@When("^I click on a park image$")
-	public void click_park_image() {
+	public void click_on_park_image() {
 		homePage.clickImageLink();
 	}
 	

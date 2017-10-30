@@ -1,6 +1,13 @@
-Scenario: changing the temperature
-	Given I am on the hompe page
-	And I click on a park image
-	When I change the temparture to celsius
+Feature: Park Detail Page
+
+Scenario: changing the temperature to celsius
+	Given I am on a park detail page
+	When I change the temperature to celsius
 	And I submit the form
 	Then the temperature should be in celsius
+	
+Scenario: changing the temperature to fahrenheit
+	Given I am on a park detail page
+	When I change the temperature to fahrenheit
+	And I submit the form
+	Then the temperature should be in fahrenheit

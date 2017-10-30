@@ -1,3 +1,5 @@
+Feature: Home Page Feature
+
 Scenario: click on the survey link
 	Given I am on the home page
 	When I click the survey link

@@ -40,7 +40,7 @@ public class HomePage {
 	public boolean isShown() {
 		try {
 			WebElement home = webDriver.findElement(By.id("home"));
-			return home != null
+			return home != null;
 		} catch (NoSuchElementException e) {
 			return false;
 		}

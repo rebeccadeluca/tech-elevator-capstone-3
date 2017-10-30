@@ -35,5 +35,29 @@ public class ParkDetailPage {
 			return false;
 		}
 	}
+	
+	public ParkDetailPage submitNewUnits() {
+		WebElement submitButton = webDriver.findElement(By.id("submit"));
+		submitButton.click();
+		return this;
+	}
+
+	public boolean isCelsius() {
+		WebElement unitsShown = webDriver.findElement(By.id("C"));
+		if(unitsShown.getText().contains("C")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean isFahrenheit() {
+		WebElement unitsShown = webDriver.findElement(By.id("F"));
+		if(unitsShown.getText().contains("F")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
 }

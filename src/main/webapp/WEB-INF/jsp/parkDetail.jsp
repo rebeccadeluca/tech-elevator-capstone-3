@@ -46,7 +46,7 @@
 	<form action="${submitUnit}" method="POST">
 		<input type="radio" name="unit" value="fahrenheit" checked> Fahrenheit 
 		<input type="radio" name="unit" value="celsius"> Celsius
-		<input type="submit" value="Change units">			
+		<input id="submit" type="submit" value="Change units">			
 	</form>
 	</div>
 	
@@ -55,17 +55,17 @@
 		<h2 style="text-align: center" class="francois-font">Today</h2>
 		<c:choose>
 			<c:when test='${sessionScope.unit.equals("fahrenheit")}'>
-				<c:set value=" F" var="temp"/>
+				<c:set value="F" var="temp"/>
 			</c:when>
 			<c:when test='${sessionScope.unit.equals("celsius")}'>
-				<c:set value=" C" var="temp"/>
+				<c:set value="C" var="temp"/>
 			</c:when>
 		</c:choose>
 		<c:set value="${forecast.get(0)}" var="today"/>
 			<c:url value="img/weather/${today.forecast}.png" var="weatherImage"/>
 			<img src="${weatherImage}"/>		
 			
-			<p><span class="extra-bold">High:</span> ${today.getHigh(sessionScope.unit) } ${temp} <span class="extra-bold">Low:</span> ${today.getLow(sessionScope.unit)}  ${temp}</p>
+			<p id="${temp}"><span class="extra-bold">High:</span> ${today.getHigh(sessionScope.unit) } ${temp} <span class="extra-bold">Low:</span> ${today.getLow(sessionScope.unit)}  ${temp}</p>
 			<ul>
 			<c:forEach var="recommendation" items="${today.recommendation}">
 				<li style="text-align: left;">${recommendation}</li>
@@ -82,7 +82,7 @@
 			<c:url value="img/weather/${day.forecast}.png" var="weatherImage"/>
 			<img src="${weatherImage}"/>
 			<br>
-			<span class="extra-bold">High:</span> ${day.getHigh(sessionScope.unit) } ${temp} <br>
+			<span class="extra-bold">High:</span> ${day.getHigh(sessionScope.unit)} ${temp} <br>
 			<span class="extra-bold">Low:</span> ${day.getLow(sessionScope.unit)}  ${temp}
 		</div>	
 		</c:forEach>
